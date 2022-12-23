@@ -1,0 +1,25 @@
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.nav-container_cs {
+  margin: 0 5%;
+}
+
+.table-container_cs {
+  height: 100vh;
+  /* background-color: red; */
+  overflow-x: auto;
+  padding: 0;
+  position: relative;
+  top: 10%;
+}
+.table-container_cs table {
+  background-color: lightblue;
+  border: none;
+}
+.table-container_cs tbody td:hover {
+  background-color: gray;
+}
