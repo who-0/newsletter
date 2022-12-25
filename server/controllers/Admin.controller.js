@@ -11,7 +11,14 @@ const httpGetAdminSignup = (req, res) => {
   );
 };
 
+const httpGetAdminLogin = (req, res) => {
+  return res.sendFile(
+    path.join(__dirname, "..", "..", "client", "Admin", "login.html")
+  );
+};
+
 module.exports = {
   httpGetAdmin,
   httpGetAdminSignup,
+  httpGetAdminLogin,
 };

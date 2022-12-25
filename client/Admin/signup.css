@@ -55,10 +55,12 @@ select {
   background-color: white;
 }
 .admin-signup button {
-  background-color: rgb(79, 243, 79);
+  background-color: rgb(66, 249, 66);
   border-radius: 5px;
   color: white;
+  transition: all 0.2s;
 }
 .admin-signup button:hover {
   background-color: lightgreen;
+  color: black;
 }

@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@600&display=swap");
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.admin-login {
+  height: 20rem;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 1vmax;
+  box-shadow: 4px 4px 10px rgb(72, 71, 71);
+  background-image: url(../img/login-background.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: lightgreen;
+}
+.admin-container .admin-login > * {
+  width: 17rem;
+  height: 2rem;
+  margin: 1.5% auto;
+  border-radius: 0.5vmax;
+  border: none;
+  outline: none;
+  font-family: "Comfortaa", cursive;
+}
+.admin-container .admin-login input {
+  padding-left: 0.5rem;
+  background-color: rgb(62, 252, 62);
+  color: white;
+}
+
+.admin-login input::placeholder {
+  color: white;
+}
+.admin-login input:focus {
+  background-color: white;
+  color: rgb(62, 252, 62);
+  border: 2px solid rgb(62, 252, 62);
+}
+.admin-login button {
+  background-color: rgb(61, 206, 255);
+  color: white;
+  transition: all 0.2s;
+}
+.admin-login button:hover {
+  background-color: lightblue;
+  color: black;
+}
