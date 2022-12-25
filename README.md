@@ -17,7 +17,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd newsletter && server
+  cd newsletter && cd server
 ```
 
 Install dependencies
