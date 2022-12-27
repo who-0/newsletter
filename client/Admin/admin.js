@@ -1,14 +1,6 @@
 const input = document.querySelectorAll("input");
 const td = document.querySelectorAll("td");
 
-// function changeInput(e) {
-//   console.log("hi");
-
-//   e.disabled = false;
-//   e.focus();
-//   console.log(e.value);
-// }
-
 td.forEach((t) => {
   t.addEventListener("click", (_) => {
     let singleInput = t.children[0];
@@ -18,15 +10,6 @@ td.forEach((t) => {
   });
 });
 
-// input.forEach((e) => {
-//   e.addEventListener("click", (_) => {
-//     console.log(e);
-//     e.disabled = false;
-//     e.focus();
-//     console.log(e.value);
-//   });
-// });
-
 input.forEach((e) => {
   e.addEventListener("blur", () => {
     console.log("this is blur");
@@ -34,4 +17,15 @@ input.forEach((e) => {
     e.blur();
     e.disabled = true;
   });
+});
+
+window.addEventListener("loadstart", function () {
+  const loading = document.getElementsByClassName("loading");
+  loading[0].classList.add("show");
+  loading[0].classList.remove("hidden");
+});
+window.addEventListener("DOMContentLoaded", function () {
+  const loading = document.getElementsByClassName("loading");
+  loading[0].classList.add("hidden");
+  loading[0].classList.remove("show");
 });

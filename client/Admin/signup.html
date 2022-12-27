@@ -14,7 +14,7 @@
 <body>
     <div class="container admin-container">
         <div class="admin-signup w-50">
-            <input type="text" name="uname" id="unmae" placeholder="Username">
+            <input type="text" name="uname" id="uname" placeholder="Username">
             <input type="email" name="email" id="email" placeholder="Email">
             <input type="password" name="pwd" id="pwd" placeholder="Password">
             <input type="text" name="code" id="code" placeholder="Verify Code">
@@ -23,9 +23,14 @@
                 <option value="admin">Admin</option>
                 <option value="Member">Member</option>
             </select>
-            <button>Signup</button>
+            <button onclick="postSignup()">Signup</button>
         </div>
     </div>
+    <div class="loading">
+        <span class="loader"></span>
+    </div>
+
+    <script src="admin-signup.js"></script>
 </body>
 
 </html>
