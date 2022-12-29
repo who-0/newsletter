@@ -14,6 +14,15 @@ body {
   align-items: center;
   flex-direction: column;
 }
+.hidden-container {
+  opacity: 0;
+  transform: translate(10%);
+  transition: all 0.2s;
+}
+.show-container {
+  opacity: 1;
+  transform: translate(0);
+}
 .img-container {
   text-align: center;
 }
@@ -127,6 +136,6 @@ body {
 }
 @media (max-width: 768px) {
   .news-container .form input {
-    width: 70%;
+    width: 70% !important;
   }
 }

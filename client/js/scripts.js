@@ -28,18 +28,29 @@ async function postNewsLetter() {
   };
   const NewUser = await fetch(URL, options)
     .then((res) => res.json())
+    .then((data) => console.log(data))
     .catch((err) => console.log(err));
-  const encodedata = encodeURIComponent(
-    `${NewUser.firstName},${NewUser.lastName},${NewUser.email}`
-  );
-  location.replace(URL + "success" + "?" + encodedata);
+  console.log(NewUser);
+  // const encodedata = encodeURIComponent(
+  //   `${NewUser.firstName},${NewUser.lastName},${NewUser.email}`
+  // );
+  // location.replace(URL + "success" + "?" + encodedata);
 }
 
-// window.addEventListener("", function () {
-//   const loading = document.getElementsByClassName("loading");
-//   loading[1].style.display = "none";
-//   console.log(loading);
-// });
+const hiddenElements = document.querySelectorAll(".hidden-container");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show-container");
+    } else {
+      entry.target.classList.remove("show-container");
+    }
+  });
+});
+
+hiddenElements.forEach((el) => observer.observe(el));
+
 window.addEventListener("loadstart", function () {
   const loading = document.getElementsByClassName("loading");
   loading[0].classList.add("show");

@@ -1,4 +1,5 @@
 const path = require("path");
+const { addUser } = require("../models/users.model");
 
 const httpGetHome = (req, res) => {
   res.sendFile(path.join(__dirname, "..", "..", "client", "index.html"));
@@ -10,7 +11,10 @@ const httpPostHome = async (req, res) => {
       error: "Please All fill input.",
     });
   }
-  return res.status(200).json(req.body);
+
+  const newUser = await addUser(req.body);
+  console.log("newUser", newUser);
+  return res.status(200).json({ newUser });
 };
 
 module.exports = { httpGetHome, httpPostHome };

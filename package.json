@@ -1,0 +1,22 @@
+{
+  "name": "newsletter",
+  "version": "1.0.0",
+  "description": "Newsletter signup web app using nodejs and express framework",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon server/server.js",
+    "install": "npm i --prefix server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/who-0/newsletter.git"
+  },
+  "author": "DaDDy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/who-0/newsletter/issues"
+  },
+  "homepage": "https://github.com/who-0/newsletter#readme"
+}

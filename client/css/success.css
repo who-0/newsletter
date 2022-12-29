@@ -112,8 +112,10 @@ body {
   }
   .success-container {
     margin: 3%;
+    padding: 0;
   }
   .success-container h1 {
     font-size: 1.3rem;
+    width: 70%;
   }
 }

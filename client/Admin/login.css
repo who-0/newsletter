@@ -25,7 +25,7 @@ body {
   background-color: lightgreen;
 }
 .admin-container .admin-login > * {
-  width: 17rem;
+  width: 60% !important;
   height: 2rem;
   margin: 1.5% auto;
   border-radius: 0.5vmax;
@@ -118,5 +118,14 @@ body {
   }
   100% {
     clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
+}
+@media (max-width: 768px) {
+  .admin-login {
+    width: 90% !important;
+  }
+  .admin-container .admin-login > * {
+    width: 70% !important;
+    font-size: 90%;
   }
 }
