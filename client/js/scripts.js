@@ -28,13 +28,13 @@ async function postNewsLetter() {
   };
   const NewUser = await fetch(URL, options)
     .then((res) => res.json())
-    .then((data) => console.log(data))
+    .then((data) => data)
     .catch((err) => console.log(err));
-  console.log(NewUser);
-  // const encodedata = encodeURIComponent(
-  //   `${NewUser.firstName},${NewUser.lastName},${NewUser.email}`
-  // );
-  // location.replace(URL + "success" + "?" + encodedata);
+  console.log("NewUser", NewUser);
+  const encodedata = encodeURIComponent(
+    `${NewUser.newUser.firstname},${NewUser.newUser.lastname},${NewUser.newUser.email}`
+  );
+  location.replace(URL + "success" + "?" + encodedata);
 }
 
 const hiddenElements = document.querySelectorAll(".hidden-container");

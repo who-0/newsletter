@@ -6,6 +6,7 @@ const httpGetHome = (req, res) => {
 };
 const httpPostHome = async (req, res) => {
   const { firstName, lastName, email } = req.body;
+  console.log(req.body);
   if (!firstName || !lastName || !email) {
     return res.status(404).json({
       error: "Please All fill input.",

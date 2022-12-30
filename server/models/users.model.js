@@ -6,13 +6,11 @@ const addUser = async (user) => {
     lastname: user.lastName,
     email: user.email,
   };
-  return await Users.findOneAndUpdate({ newUser }, (err, result) => {
-    if (err) {
-      console.log(err.message);
-    } else {
-      console.log(result);
-      return result;
-    }
+  console.log(newUser);
+  return await Users.findOneAndUpdate({ email: newUser.email }, newUser, {
+    upsert: true,
+    returnDocument: true,
+    new: true,
   });
 };
 
