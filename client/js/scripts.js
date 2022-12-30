@@ -31,10 +31,17 @@ async function postNewsLetter() {
     .then((data) => data)
     .catch((err) => console.log(err));
   console.log("NewUser", NewUser);
-  const encodedata = encodeURIComponent(
-    `${NewUser.newUser.firstname},${NewUser.newUser.lastname},${NewUser.newUser.email}`
-  );
-  location.replace(URL + "success" + "?" + encodedata);
+  if (NewUser.newUser) {
+    const encodedata = encodeURIComponent(
+      `${NewUser.newUser.firstname},${NewUser.newUser.lastname},${NewUser.newUser.email}`
+    );
+    location.replace(URL + "success" + "?" + encodedata);
+  } else {
+    const encodedata = encodeURIComponent(
+      `${NewUser.firstname},${NewUser.lastname}`
+    );
+    location.replace(URL + "error" + "?" + encodedata);
+  }
 }
 
 const hiddenElements = document.querySelectorAll(".hidden-container");

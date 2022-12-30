@@ -1,5 +1,15 @@
 const input = document.querySelectorAll("input");
 const td = document.querySelectorAll("td");
+const API_URL = "http://localhost:3000/allsingup";
+
+(async function () {
+  const allSignup = await fetch(API_URL, {
+    method: "get",
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+  console.log(allSignup);
+})();
 
 td.forEach((t) => {
   t.addEventListener("click", (_) => {

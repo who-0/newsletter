@@ -6,7 +6,6 @@ const addUser = async (user) => {
     lastname: user.lastName,
     email: user.email,
   };
-  console.log(newUser);
   return await Users.findOneAndUpdate({ email: newUser.email }, newUser, {
     upsert: true,
     returnDocument: true,
@@ -15,11 +14,11 @@ const addUser = async (user) => {
 };
 
 const findUsers = async () => {
-  await Users.find({});
+  return await Users.find({});
 };
 
 const findUser = async (email) => {
-  await Users.findOne({ email });
+  return await Users.findOne({ email });
 };
 module.exports = {
   addUser,

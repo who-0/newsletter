@@ -14,14 +14,13 @@ async function postSignup() {
     role: roles.value,
   };
 
-  await fetch(URL, {
+  const newMember = await fetch(URL, {
     method: "post",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   }).then((res) => res.json());
 
   const newUrl = URL.split("signup")[0];
-  console.log(newUrl);
   location.replace(newUrl);
 }
 
