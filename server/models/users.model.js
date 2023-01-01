@@ -20,8 +20,13 @@ const findUsers = async () => {
 const findUser = async (email) => {
   return await Users.findOne({ email });
 };
+
+const deleteUser = async (id) => {
+  return await Users.deleteOne({ id });
+};
 module.exports = {
   addUser,
   findUser,
   findUsers,
+  deleteUser,
 };

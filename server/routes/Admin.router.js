@@ -6,13 +6,15 @@ const {
   httpPostAdminSignup,
   httpPostAdminLogin,
   httpAllSignup,
+  httpDelete,
 } = require("../controllers/Admin.controller");
 const adminRouter = express.Router();
 
 adminRouter.get("/", httpGetAdmin);
+adminRouter.get("/user/:id", httpDelete);
 adminRouter.get("/signup", httpGetAdminSignup);
 adminRouter.post("/signup", httpPostAdminSignup);
-adminRouter.post("/allsignup", httpAllSignup);
+adminRouter.get("/allsignup", httpAllSignup);
 adminRouter.get("/login", httpGetAdminLogin);
 adminRouter.post("/login", httpPostAdminLogin);
 

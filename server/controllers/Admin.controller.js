@@ -1,7 +1,7 @@
 const { ok } = require("assert");
 const path = require("path");
 const { addMember } = require("../models/admin.model");
-const { findUsers } = require("../models/users.model");
+const { findUsers, deleteUser } = require("../models/users.model");
 
 const httpGetAdminSignup = (req, res) => {
   return res.sendFile(
@@ -39,8 +39,14 @@ const httpGetAdmin = async (req, res) => {
   );
 };
 const httpAllSignup = async (req, res) => {
-  const allSignup = await findUsers();
+  const allSignup = await findUsers({});
   return res.status(200).json(allSignup);
+};
+
+const httpDelete = async (req, res) => {
+  const id = req.params.id;
+  await deleteUser(id);
+  return res.redirect("/admin");
 };
 
 module.exports = {
@@ -50,4 +56,5 @@ module.exports = {
   httpPostAdminSignup,
   httpPostAdminLogin,
   httpAllSignup,
+  httpDelete,
 };
