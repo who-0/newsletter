@@ -1,11 +1,13 @@
 const Users = require("./users.mongo");
 
 const addUser = async (user) => {
+  console.log("User", user);
   const newUser = {
     firstname: user.firstName,
     lastname: user.lastName,
     email: user.email,
   };
+  console.log(newUser);
   return await Users.findOneAndUpdate({ email: newUser.email }, newUser, {
     upsert: true,
     returnDocument: true,

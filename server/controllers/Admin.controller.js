@@ -1,7 +1,8 @@
 const path = require("path");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 const { addMember } = require("../models/admin.model");
-const { findUsers, deleteUser } = require("../models/users.model");
+const { findUsers, deleteUser, findUser } = require("../models/users.model");
 const { A_TOKEN, R_TOKEN } = process.env;
 
 const httpGetAdminSignup = (req, res) => {
@@ -17,15 +18,26 @@ const httpPostAdminSignup = async (req, res) => {
       error: "Missing some input. Please All Fill!",
     });
   }
-  const userToken = jwt.sign({ email }, A_TOKEN, {
+  const oldUser = await findUser(email);
+  if (oldUser) {
+    return res.status(406).json(oldUser);
+  }
+  const hpwd = await bcrypt.hash(pwd, 8);
+  const userToken = jwt.sign({ email, role }, A_TOKEN, {
     expiresIn: "1m",
   });
-  const newToken = jwt.sign({ email }, R_TOKEN);
+  const newToken = jwt.sign({ email, role }, R_TOKEN);
   const newUser = {
-    ...req.body,
+    uname,
+    email,
+    code,
+    role,
+    hpwd,
     newToken,
   };
+  console.log("newUser", newUser);
   const newMember = await addMember(newUser);
+  console.log(newMember);
   res.cookie("userToken", userToken, { httpOnly: true });
   res.cookie("newToken", newToken, { httpOnly: true });
   return res.status(200).json(newMember);
@@ -37,9 +49,15 @@ const httpGetAdminLogin = (req, res) => {
   );
 };
 
-const httpPostAdminLogin = (req, res) => {
+const httpPostAdminLogin = async (req, res) => {
   const { email, pwd } = req.body;
-  console.log(req.body);
+  const eUser = await findUser({ email });
+  const userToken = jwt.sign({ email }, A_TOKEN, {
+    expiresIn: "1m",
+  });
+  const newToken = jwt.sign({ email }, R_TOKEN);
+  res.cookie("userToken", userToken, { httpOnly: true });
+  res.cookie("newToken", newToken, { httpOnly: true });
   return res.status(200).json(req.body);
 };
 

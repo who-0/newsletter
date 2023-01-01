@@ -1,12 +1,13 @@
 const Admin = require("./admin.mongo");
 
 const addMember = async (data) => {
-  const { uname, pwd, email, role } = data;
+  const { uname, hpwd, email, role, newToken } = data;
   const newMember = {
     username: uname,
     email,
-    password: pwd,
+    password: hpwd,
     role,
+    newToken,
   };
   console.log(newMember);
   return await Admin.findOneAndUpdate({ email }, newMember, {
