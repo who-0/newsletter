@@ -8,6 +8,7 @@ const {
   httpAllSignup,
   httpDelete,
 } = require("../controllers/Admin.controller");
+const { httpGetProfile } = require("../controllers/profile.controler");
 const adminRouter = express.Router();
 
 adminRouter.get("/", httpGetAdmin);
@@ -17,5 +18,6 @@ adminRouter.post("/signup", httpPostAdminSignup);
 adminRouter.get("/allsignup", httpAllSignup);
 adminRouter.get("/login", httpGetAdminLogin);
 adminRouter.post("/login", httpPostAdminLogin);
+adminRouter.post("/profile", httpGetProfile);
 
 module.exports = adminRouter;

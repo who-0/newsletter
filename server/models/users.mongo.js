@@ -13,5 +13,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  nweToken: {
+    type: String,
+    required: true,
+  },
 });
 module.exports = mongoose.model("users", userSchema);

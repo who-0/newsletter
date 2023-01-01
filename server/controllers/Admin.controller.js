@@ -1,7 +1,8 @@
-const { ok } = require("assert");
 const path = require("path");
+const jwt = require("jsonwebtoken");
 const { addMember } = require("../models/admin.model");
 const { findUsers, deleteUser } = require("../models/users.model");
+const { A_TOKEN, R_TOKEN } = process.env;
 
 const httpGetAdminSignup = (req, res) => {
   return res.sendFile(
@@ -16,8 +17,17 @@ const httpPostAdminSignup = async (req, res) => {
       error: "Missing some input. Please All Fill!",
     });
   }
-  const newMember = await addMember(req.body);
-  console.log("server", newMember);
+  const userToken = jwt.sign({ email }, A_TOKEN, {
+    expiresIn: "1m",
+  });
+  const newToken = jwt.sign({ email }, R_TOKEN);
+  const newUser = {
+    ...req.body,
+    newToken,
+  };
+  const newMember = await addMember(newUser);
+  res.cookie("userToken", userToken, { httpOnly: true });
+  res.cookie("newToken", newToken, { httpOnly: true });
   return res.status(200).json(newMember);
 };
 
