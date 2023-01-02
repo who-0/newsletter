@@ -19,13 +19,13 @@ body {
   top: 10%;
 }
 .table-container_cs table {
-  background-color: rgb(125, 247, 167);
+  background-color: rgb(71, 77, 73);
   border: none;
-  color: white;
   border-radius: 0.5vmax;
 }
 .table-container_cs tbody td:hover {
   color: black;
+  background-color: rgb(172, 172, 172);
 }
 .table-container_cs tbody .delete {
   text-align: center;
@@ -34,11 +34,19 @@ body {
   padding: 10% 40%;
 
   text-decoration: none;
-  color: black;
+  color: white;
   cursor: pointer;
   text-align: center;
 }
-
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+  border: none;
+  color: white;
+}
 .table-container_cs tbody .delete a:hover {
   color: red;
 }

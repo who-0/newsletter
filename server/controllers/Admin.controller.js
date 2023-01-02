@@ -1,8 +1,8 @@
 const path = require("path");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { addMember } = require("../models/admin.model");
-const { findUsers, deleteUser, findUser } = require("../models/users.model");
+const { addMember, findMember } = require("../models/admin.model");
+const { findUsers, deleteUser } = require("../models/users.model");
 const { A_TOKEN, R_TOKEN } = process.env;
 
 const httpGetAdminSignup = (req, res) => {
@@ -18,7 +18,7 @@ const httpPostAdminSignup = async (req, res) => {
       error: "Missing some input. Please All Fill!",
     });
   }
-  const oldUser = await findUser(email);
+  const oldUser = await findMember(email);
   if (oldUser) {
     return res.status(406).json(oldUser);
   }
@@ -35,9 +35,7 @@ const httpPostAdminSignup = async (req, res) => {
     hpwd,
     newToken,
   };
-  console.log("newUser", newUser);
   const newMember = await addMember(newUser);
-  console.log(newMember);
   res.cookie("userToken", userToken, { httpOnly: true });
   res.cookie("newToken", newToken, { httpOnly: true });
   return res.status(200).json(newMember);
@@ -51,14 +49,26 @@ const httpGetAdminLogin = (req, res) => {
 
 const httpPostAdminLogin = async (req, res) => {
   const { email, pwd } = req.body;
-  const eUser = await findUser({ email });
+  const eUser = await findMember(email);
+  if (!eUser) {
+    return res.status(404).json({
+      error: "Your account is missing in our server",
+    });
+  }
+  const solvepwd = bcrypt.compare(pwd, eUser.password);
+  console.log(solvepwd);
+  if (!solvepwd) {
+    return res.status(400).json({
+      error: "Your password is incorrect",
+    });
+  }
   const userToken = jwt.sign({ email }, A_TOKEN, {
     expiresIn: "1m",
   });
   const newToken = jwt.sign({ email }, R_TOKEN);
   res.cookie("userToken", userToken, { httpOnly: true });
   res.cookie("newToken", newToken, { httpOnly: true });
-  return res.status(200).json(req.body);
+  return res.redirect("/admin");
 };
 
 const httpGetAdmin = async (req, res) => {

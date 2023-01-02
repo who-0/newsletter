@@ -19,9 +19,11 @@ const findUsers = async () => {
   return await Users.find({});
 };
 
-const findUser = async (email) => {
-  return await Users.findOne({ email });
-};
+async function findUser(email) {
+  return await Users.find({ email }, { _id: 0, __v: 0 }, (err) => {
+    console.log(err.message);
+  });
+}
 
 const deleteUser = async (id) => {
   return await Users.deleteOne({ id });

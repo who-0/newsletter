@@ -9,15 +9,13 @@ const addMember = async (data) => {
     role,
     newToken,
   };
-  console.log(newMember);
   return await Admin.findOneAndUpdate({ email }, newMember, {
     upsert: true,
     new: true,
   });
 };
 
-const findMember = async (data) => {
-  const { email } = data;
+const findMember = async (email) => {
   return await Admin.findOne({ email });
 };
 
