@@ -1,13 +1,11 @@
 const Users = require("./users.mongo");
 
 const addUser = async (user) => {
-  console.log("User", user);
   const newUser = {
     firstname: user.firstName,
     lastname: user.lastName,
     email: user.email,
   };
-  console.log(newUser);
   return await Users.findOneAndUpdate({ email: newUser.email }, newUser, {
     upsert: true,
     returnDocument: true,
@@ -20,9 +18,7 @@ const findUsers = async () => {
 };
 
 async function findUser(email) {
-  return await Users.find({ email }, { _id: 0, __v: 0 }, (err) => {
-    console.log(err.message);
-  });
+  return await Users.findOne({ email }, { _id: 0, __v: 0 });
 }
 
 const deleteUser = async (id) => {

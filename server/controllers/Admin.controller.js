@@ -5,9 +5,21 @@ const { addMember, findMember } = require("../models/admin.model");
 const { findUsers, deleteUser } = require("../models/users.model");
 const { A_TOKEN, R_TOKEN } = process.env;
 
+const httpGetAdmin = async (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "..", "..", "client", "Admin", "adminPenel.html")
+  );
+};
+
 const httpGetAdminSignup = (req, res) => {
   return res.sendFile(
     path.join(__dirname, "..", "..", "client", "Admin", "signup.html")
+  );
+};
+
+const httpGetAdminLogin = (req, res) => {
+  return res.sendFile(
+    path.join(__dirname, "..", "..", "client", "Admin", "login.html")
   );
 };
 
@@ -41,12 +53,6 @@ const httpPostAdminSignup = async (req, res) => {
   return res.status(200).json(newMember);
 };
 
-const httpGetAdminLogin = (req, res) => {
-  return res.sendFile(
-    path.join(__dirname, "..", "..", "client", "Admin", "login.html")
-  );
-};
-
 const httpPostAdminLogin = async (req, res) => {
   const { email, pwd } = req.body;
   const eUser = await findMember(email);
@@ -55,8 +61,7 @@ const httpPostAdminLogin = async (req, res) => {
       error: "Your account is missing in our server",
     });
   }
-  const solvepwd = bcrypt.compare(pwd, eUser.password);
-  console.log(solvepwd);
+  const solvepwd = await bcrypt.compare(pwd, eUser.password);
   if (!solvepwd) {
     return res.status(400).json({
       error: "Your password is incorrect",
@@ -68,14 +73,11 @@ const httpPostAdminLogin = async (req, res) => {
   const newToken = jwt.sign({ email }, R_TOKEN);
   res.cookie("userToken", userToken, { httpOnly: true });
   res.cookie("newToken", newToken, { httpOnly: true });
-  return res.redirect("/admin");
+  return res.status(200).json({
+    success: true,
+  });
 };
 
-const httpGetAdmin = async (req, res) => {
-  res.sendFile(
-    path.join(__dirname, "..", "..", "client", "Admin", "adminPenel.html")
-  );
-};
 const httpAllSignup = async (req, res) => {
   const allSignup = await findUsers({});
   return res.status(200).json(allSignup);

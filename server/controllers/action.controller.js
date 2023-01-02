@@ -11,7 +11,6 @@ const httpGetError = (req, res) => {
 
 const refreshToken = async (req, res) => {
   const { newToken } = req.cookies;
-  console.log("this is refresh route");
   await jwt.verify(newToken, R_TOKEN, (err, result) => {
     if (err) {
       return res.status(404).json({

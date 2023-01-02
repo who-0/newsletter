@@ -6,7 +6,6 @@ const API_URL = "http://localhost:3000/admin/allsignup";
     .catch((err) => console.log(err));
   let userData = "";
   allSignup.forEach((i, index) => {
-    console.log(i._id);
     userData += `
     <tr>
     <th scope="row">${index + 1}</th>
@@ -19,39 +18,6 @@ const API_URL = "http://localhost:3000/admin/allsignup";
   });
   tbody.innerHTML = userData;
 })();
-
-const input = document.querySelectorAll("input");
-const tds = document.querySelectorAll("td");
-tds.forEach((t) => {
-  console.log(t);
-});
-// tds.forEach((t) => {
-//   console.log("this is testing");
-//   t.addEventListener("click", (_) => {
-//     console.log("hi");
-//     let singleInput = t.children[0];
-//     singleInput.disabled = false;
-//     singleInput.focus();
-//     console.log(singleInput);
-//   });
-// });
-
-function changeInput() {
-  console.log("hi");
-  // let singleInput = t.children[0];
-  // singleInput.disabled = false;
-  // singleInput.focus();
-  // console.log(singleInput);
-}
-
-input.forEach((e) => {
-  e.addEventListener("blur", () => {
-    console.log("this is blur");
-    console.log(e.value);
-    e.blur();
-    e.disabled = true;
-  });
-});
 
 window.addEventListener("loadstart", function () {
   const loading = document.getElementsByClassName("loading");

@@ -6,11 +6,15 @@ async function postLogin() {
     email: mail.value,
     pwd: password.value,
   };
-  await fetch(URL, {
+  const success = await fetch(URL, {
     method: "post",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   }).then((res) => res.json());
+  console.log(success);
+  if (!success) {
+    Location.replace("/error");
+  }
   const newUrl = URL.split("login")[0];
   location.replace(newUrl);
 }

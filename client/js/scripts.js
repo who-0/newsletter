@@ -30,7 +30,6 @@ async function postNewsLetter() {
     .then((res) => res.json())
     .then((data) => data)
     .catch((err) => console.log(err));
-  console.log("NewUser", NewUser);
   if (NewUser.newUser) {
     const encodedata = encodeURIComponent(
       `${NewUser.newUser.firstname},${NewUser.newUser.lastname},${NewUser.newUser.email}`
@@ -62,11 +61,9 @@ window.addEventListener("loadstart", function () {
   const loading = document.getElementsByClassName("loading");
   loading[0].classList.add("show");
   loading[0].classList.remove("hidden");
-  console.log(loading);
 });
 window.addEventListener("DOMContentLoaded", function () {
   const loading = document.getElementsByClassName("loading");
   loading[0].classList.add("hidden");
   loading[0].classList.remove("show");
-  console.log(loading);
 });
