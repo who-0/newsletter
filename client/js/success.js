@@ -7,7 +7,7 @@ userName.textContent = `${newUser[0]} ${newUser[1]}`;
 email.textContent = `${newUser[2]}`;
 
 //!----------------------- loader
-window.addEventListener("loadstart", function () {
+window.addEventListener("load", function () {
   const loading = document.getElementsByClassName("loading");
   loading[0].classList.add("show");
   loading[0].classList.remove("hidden");
