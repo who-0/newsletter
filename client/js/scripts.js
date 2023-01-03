@@ -1,5 +1,5 @@
-const URL = "https://newsletter-qsx1.onrender.com/";
-// const URL = "http://localhost:3000/";
+// const URL = "https://newsletter-qsx1.onrender.com/";
+const URL = "http://localhost:3000/";
 
 async function postNewsLetter() {
   const fname = document.getElementById("fname");

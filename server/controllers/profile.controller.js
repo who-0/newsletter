@@ -8,8 +8,15 @@ const httpGetProfile = async (req, res) => {
 };
 
 const httpPostProfile = async (req, res) => {
-  const updatedUser = await updatedMember(req.body);
-  return res.status(206).json(updatedUser);
+  try {
+    const updatedUser = await updatedMember(req.body);
+    return res.status(206).json(updatedUser);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({
+      err: error.message,
+    });
+  }
 };
 
 const httpLogout = async (req, res) => {
@@ -19,9 +26,16 @@ const httpLogout = async (req, res) => {
 };
 
 const httpFindUserProfile = async (req, res) => {
-  const { email } = req.data;
-  const user = await findMember(email);
-  return res.status(200).json(user);
+  try {
+    const { email } = req.data;
+    const user = await findMember(email);
+    return res.status(200).json(user);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({
+      err: error.message,
+    });
+  }
 };
 
 module.exports = {

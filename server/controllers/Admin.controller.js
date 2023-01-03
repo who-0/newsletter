@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { addMember, findMember } = require("../models/admin.model");
 const { findUsers, deleteUser } = require("../models/users.model");
-const { A_TOKEN, R_TOKEN } = process.env;
+const { A_TOKEN, R_TOKEN, ADMIN, MEMBER } = process.env;
 
 const httpGetAdmin = async (req, res) => {
   res.sendFile(path.join(__dirname, "..", "..", "client", "adminPenel.html"));
@@ -25,28 +25,44 @@ const httpPostAdminSignup = async (req, res) => {
     return res.status(400).json({
       error: "Missing some input. Please All Fill!",
     });
+  } else if (+code === ADMIN && role === "admin") {
+    return res.status(400).json({
+      error: "Your verfiy code is wrong.",
+    });
+  } else if (+code === MEMBER && role === "member") {
+    return res.status(400).json({
+      error: "Your verfiy code is wrong.",
+    });
+  } else {
+    try {
+      const oldUser = await findMember(email);
+      if (oldUser) {
+        return res.status(406).json(oldUser);
+      }
+      const hpwd = await bcrypt.hash(pwd, 8);
+      const userToken = jwt.sign({ email, role }, A_TOKEN, {
+        expiresIn: "1m",
+      });
+      const newToken = jwt.sign({ email, role }, R_TOKEN);
+      const newUser = {
+        uname,
+        email,
+        code,
+        role,
+        hpwd,
+        newToken,
+      };
+      const newMember = await addMember(newUser);
+      res.cookie("userToken", userToken, { httpOnly: true });
+      res.cookie("newToken", newToken, { httpOnly: true });
+      return res.status(200).json(newMember);
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({
+        err: error.message,
+      });
+    }
   }
-  const oldUser = await findMember(email);
-  if (oldUser) {
-    return res.status(406).json(oldUser);
-  }
-  const hpwd = await bcrypt.hash(pwd, 8);
-  const userToken = jwt.sign({ email, role }, A_TOKEN, {
-    expiresIn: "1m",
-  });
-  const newToken = jwt.sign({ email, role }, R_TOKEN);
-  const newUser = {
-    uname,
-    email,
-    code,
-    role,
-    hpwd,
-    newToken,
-  };
-  const newMember = await addMember(newUser);
-  res.cookie("userToken", userToken, { httpOnly: true });
-  res.cookie("newToken", newToken, { httpOnly: true });
-  return res.status(200).json(newMember);
 };
 
 const httpPostAdminLogin = async (req, res) => {
@@ -56,33 +72,71 @@ const httpPostAdminLogin = async (req, res) => {
     return res.status(404).json({
       error: "Your account is missing in our server",
     });
+  } else {
+    try {
+      const solvepwd = await bcrypt.compare(pwd, eUser.password);
+      if (!solvepwd) {
+        return res.status(400).json({
+          error: "Your password is incorrect",
+        });
+      } else {
+        const role = eUser.role;
+        const userToken = jwt.sign({ email, role }, A_TOKEN, {
+          expiresIn: "1m",
+        });
+        const newToken = jwt.sign({ email, role }, R_TOKEN);
+        res.cookie("userToken", userToken, { httpOnly: true });
+        res.cookie("newToken", newToken, { httpOnly: true });
+        return res.status(200).json({
+          success: true,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({
+        err: error.message,
+      });
+    }
   }
-  const solvepwd = await bcrypt.compare(pwd, eUser.password);
-  if (!solvepwd) {
-    return res.status(400).json({
-      error: "Your password is incorrect",
-    });
-  }
-  const userToken = jwt.sign({ email }, A_TOKEN, {
-    expiresIn: "1m",
-  });
-  const newToken = jwt.sign({ email }, R_TOKEN);
-  res.cookie("userToken", userToken, { httpOnly: true });
-  res.cookie("newToken", newToken, { httpOnly: true });
-  return res.status(200).json({
-    success: true,
-  });
 };
 
 const httpAllSignup = async (req, res) => {
-  const allSignup = await findUsers({});
-  return res.status(200).json(allSignup);
+  try {
+    const allSignup = await findUsers({});
+    const { role } = req.data;
+    if (role === "admin") {
+      return res.status(200).json(allSignup);
+    } else {
+      const role = { role: "member" };
+      allSignup.push(role);
+      return res.status(200).json(allSignup);
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({
+      err: error.message,
+    });
+  }
 };
 
 const httpDelete = async (req, res) => {
-  const id = req.params.id;
-  await deleteUser(id);
-  return res.redirect("/admin");
+  try {
+    const { role } = req.data;
+    if (role === "member") {
+      return res.status(403).json({
+        error: "Your are not authorize.",
+      });
+    } else {
+      const id = req.params.id;
+      await deleteUser(id);
+      return res.redirect("/admin");
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({
+      err: error.message,
+    });
+  }
 };
 
 module.exports = {
