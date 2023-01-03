@@ -3,7 +3,7 @@ const { findMember, updatedMember } = require("../models/admin.model");
 
 const httpGetProfile = async (req, res) => {
   return res.sendFile(
-    path.join(__dirname, "..", "..", "client", "Admin", "profile.html")
+    path.join(__dirname, "..", "..", "client", "profile.html")
   );
 };
 
