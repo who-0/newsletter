@@ -14,11 +14,11 @@ if (newUser.length === 1) {
 //!----------------------- loader
 window.addEventListener("load", function () {
   const loading = document.getElementsByClassName("loading");
-  loading[0].classList.add("show");
-  loading[0].classList.remove("hidden");
-});
-window.addEventListener("DOMContentLoaded", function () {
-  const loading = document.getElementsByClassName("loading");
-  loading[0].classList.add("hidden");
   loading[0].classList.remove("show");
+  loading[0].classList.add("hidden");
 });
+// window.addEventListener("DOMContentLoaded", function () {
+//   const loading = document.getElementsByClassName("loading");
+//   loading[0].classList.add("hidden");
+//   loading[0].classList.remove("show");
+// });

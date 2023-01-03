@@ -135,6 +135,7 @@ body {
 .show {
   display: flex;
 }
+
 @media (max-width: 768px) {
   .news-container .form input {
     width: 70% !important;
