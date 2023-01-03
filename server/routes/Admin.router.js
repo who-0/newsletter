@@ -12,6 +12,7 @@ const {
   httpGetProfile,
   httpFindUserProfile,
   httpPostProfile,
+  httpLogout,
 } = require("../controllers/profile.controller");
 const { userVerify } = require("../middlewares/verify.middleware");
 const adminRouter = express.Router();
@@ -23,6 +24,7 @@ adminRouter.get("/user/:id", userVerify, httpDelete);
 adminRouter.get("/signup", httpGetAdminSignup);
 adminRouter.get("/allsignup", userVerify, httpAllSignup);
 adminRouter.get("/login", httpGetAdminLogin);
+adminRouter.get("/logout", userVerify, httpLogout);
 
 adminRouter.post("/profile/user", userVerify, httpPostProfile);
 adminRouter.post("/signup", httpPostAdminSignup);

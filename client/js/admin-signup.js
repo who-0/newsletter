@@ -1,5 +1,5 @@
 const URL = "https://newsletter-qsx1.onrender.com/admin/signup";
-
+// const URL = "http://localhost:3000/admin/signup";
 async function postSignup() {
   const username = document.getElementById("uname");
   const mail = document.getElementById("email");

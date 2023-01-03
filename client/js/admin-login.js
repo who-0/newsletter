@@ -1,4 +1,5 @@
 const URL = "https://newsletter-qsx1.onrender.com/admin/login";
+// const URL = "http://localhost:3000/admin/login";
 async function postLogin() {
   const mail = document.getElementById("email");
   const password = document.getElementById("pwd");

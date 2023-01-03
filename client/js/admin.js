@@ -1,5 +1,6 @@
-const tbody = document.getElementById("table-body");
 const URL = "https://newsletter-qsx1.onrender.com/admin/allsignup";
+// const URL = "http://localhost:3000/admin/allsignup";
+const tbody = document.getElementById("table-body");
 (async function () {
   const allSignup = await fetch(URL)
     .then((res) => res.json())
