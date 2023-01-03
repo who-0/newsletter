@@ -1,9 +1,9 @@
-const API_URL = "http://localhost:3000/admin/profile/user";
+const URL = "https://newsletter-qsx1.onrender.com/admin/profile/user";
 const userName = document.getElementById("uname");
 const email = document.getElementById("email");
 const profileInput = document.getElementsByClassName("profile-input");
 (async function () {
-  const user = await fetch(API_URL, {
+  const user = await fetch(URL, {
     method: "get",
   }).then((res) => res.json());
   userName.value = user.username;
@@ -29,7 +29,7 @@ async function updateUser() {
     email: email.value,
   };
   console.log(data);
-  const updated = await fetch(API_URL, {
+  const updated = await fetch(URL, {
     method: "post",
     headers: {
       "Content-Type": "application/json",

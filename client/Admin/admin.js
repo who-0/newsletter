@@ -1,7 +1,7 @@
 const tbody = document.getElementById("table-body");
-const API_URL = "http://localhost:3000/admin/allsignup";
+const URL = "https://newsletter-qsx1.onrender.com/admin/allsignup";
 (async function () {
-  const allSignup = await fetch(API_URL)
+  const allSignup = await fetch(URL)
     .then((res) => res.json())
     .catch((err) => console.log(err));
   let userData = "";
