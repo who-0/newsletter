@@ -1,5 +1,5 @@
-const URL = "https://newsletter-qsx1.onrender.com/admin/signup";
-// const URL = "http://localhost:3000/admin/signup";
+// const URL = "https://newsletter-qsx1.onrender.com/admin/signup";
+const URL = "http://localhost:3000/admin/signup";
 async function postSignup() {
   const username = document.getElementById("uname");
   const mail = document.getElementById("email");
@@ -19,9 +19,16 @@ async function postSignup() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   }).then((res) => res.json());
-
-  const newUrl = URL.split("signup")[0];
-  location.replace(newUrl);
+  console.log(newMember);
+  if (!newMember) {
+    location.replace("/error");
+  } else if (newMember.error) {
+    const encoded = encodeURIComponent(newMember.error);
+    location.replace(`/error?${encoded}`);
+  } else {
+    const newUrl = URL.split("signup")[0];
+    location.replace(newUrl);
+  }
 }
 
 window.addEventListener("load", function () {

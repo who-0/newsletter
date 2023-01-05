@@ -14,9 +14,11 @@ const addMember = async (data) => {
       upsert: true,
       new: true,
     });
-  } catch (error) {
-    console.log(error);
-    return res.status(400).json({});
+  } catch (err) {
+    console.log(err);
+    return res.status(502).json({
+      error: err.message,
+    });
   }
 };
 

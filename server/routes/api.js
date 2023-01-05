@@ -9,9 +9,6 @@ api.use("/", actionRouter);
 api.use("/admin", adminRouter);
 
 api.get("*", (req, res) => {
-  // res.status(404).json({
-  //   error: "Your request is not defined in our system!",
-  // });
   const encoded = encodeURIComponent(
     "Your request is not defined in our system"
   );

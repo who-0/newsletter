@@ -1,13 +1,18 @@
-const URL = "https://newsletter-qsx1.onrender.com/admin/allsignup";
-// const URL = "http://localhost:3000/admin/allsignup";
+// const URL = "https://newsletter-qsx1.onrender.com/admin/allsignup";
+const URL = "http://localhost:3000/admin/allsignup";
 const tbody = document.getElementById("table-body");
 (async function () {
+  let userData = "";
   const allSignup = await fetch(URL)
     .then((res) => res.json())
     .catch((err) => console.log(err));
-  let userData = "";
   const role = allSignup[allSignup.length - 1];
-  if (role.role === "member") {
+  if (!allSignup) {
+    location.replace("/error");
+  } else if (allSignup.error) {
+    const encoded = encodeURIComponent(allSignup.error);
+    location.replace(`/error?${encoded}`);
+  } else if (role.role === "member") {
     allSignup.pop();
     allSignup.forEach((i, index) => {
       userData += `
@@ -32,7 +37,6 @@ const tbody = document.getElementById("table-body");
       `;
     });
   }
-
   tbody.innerHTML = userData;
 })();
 

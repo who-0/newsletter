@@ -9,6 +9,10 @@ const userVerify = async (req, res, next) => {
       if (err) {
         if (err.message === "jwt expired") {
           return res.redirect("/refresh");
+        } else {
+          return res.status(500).json({
+            error: "Can't responding. Please try again later.",
+          });
         }
       } else {
         req.data = result;

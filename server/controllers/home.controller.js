@@ -8,7 +8,7 @@ const httpPostHome = async (req, res) => {
   try {
     const { firstName, lastName, email } = req.body;
     if (!firstName || !lastName || !email) {
-      return res.status(404).json({
+      return res.status(400).json({
         error: "Please All fill input.",
       });
     } else {
@@ -20,10 +20,10 @@ const httpPostHome = async (req, res) => {
         return res.status(200).json({ newUser });
       }
     }
-  } catch (error) {
-    console.log(error);
-    return res.status(400).json({
-      err: error.message,
+  } catch (err) {
+    console.log(err);
+    return res.status(502).json({
+      error: err.message,
     });
   }
 };

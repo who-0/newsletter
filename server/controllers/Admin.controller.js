@@ -25,41 +25,45 @@ const httpPostAdminSignup = async (req, res) => {
     return res.status(400).json({
       error: "Missing some input. Please All Fill!",
     });
-  } else if (+code === ADMIN && role === "admin") {
-    return res.status(400).json({
-      error: "Your verfiy code is wrong.",
-    });
-  } else if (+code === MEMBER && role === "member") {
-    return res.status(400).json({
-      error: "Your verfiy code is wrong.",
-    });
+  } else if (role === "admin") {
+    if (+code !== ADMIN) {
+      return res.status(400).json({
+        error: "Your verfiy code is wrong.",
+      });
+    }
+  } else if (role !== "member") {
+    if (+code !== MEMBER)
+      return res.status(400).json({
+        error: "Your verfiy code is wrong.",
+      });
   } else {
     try {
       const oldUser = await findMember(email);
       if (oldUser) {
         return res.status(406).json(oldUser);
+      } else {
+        const hpwd = await bcrypt.hash(pwd, 8);
+        const userToken = jwt.sign({ email, role }, A_TOKEN, {
+          expiresIn: "1m",
+        });
+        const newToken = jwt.sign({ email, role }, R_TOKEN);
+        const newUser = {
+          uname,
+          email,
+          code,
+          role,
+          hpwd,
+          newToken,
+        };
+        const newMember = await addMember(newUser);
+        res.cookie("userToken", userToken, { httpOnly: true });
+        res.cookie("newToken", newToken, { httpOnly: true });
+        return res.status(200).json(newMember);
       }
-      const hpwd = await bcrypt.hash(pwd, 8);
-      const userToken = jwt.sign({ email, role }, A_TOKEN, {
-        expiresIn: "1m",
-      });
-      const newToken = jwt.sign({ email, role }, R_TOKEN);
-      const newUser = {
-        uname,
-        email,
-        code,
-        role,
-        hpwd,
-        newToken,
-      };
-      const newMember = await addMember(newUser);
-      res.cookie("userToken", userToken, { httpOnly: true });
-      res.cookie("newToken", newToken, { httpOnly: true });
-      return res.status(200).json(newMember);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
       return res.status(400).json({
-        err: error.message,
+        error: err.message,
       });
     }
   }
@@ -76,8 +80,8 @@ const httpPostAdminLogin = async (req, res) => {
     try {
       const solvepwd = await bcrypt.compare(pwd, eUser.password);
       if (!solvepwd) {
-        return res.status(400).json({
-          error: "Your password is incorrect",
+        return res.status(401).json({
+          err: "Your password is incorrect",
         });
       } else {
         const role = eUser.role;
@@ -93,7 +97,7 @@ const httpPostAdminLogin = async (req, res) => {
       }
     } catch (error) {
       console.log(error);
-      return res.status(400).json({
+      return res.status(503).json({
         err: error.message,
       });
     }
@@ -111,10 +115,10 @@ const httpAllSignup = async (req, res) => {
       allSignup.push(role);
       return res.status(200).json(allSignup);
     }
-  } catch (error) {
-    console.log(error);
-    return res.status(400).json({
-      err: error.message,
+  } catch (err) {
+    console.log(err);
+    return res.status(503).json({
+      error: err.message,
     });
   }
 };
@@ -133,7 +137,7 @@ const httpDelete = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-    return res.status(400).json({
+    return res.status(503).json({
       err: error.message,
     });
   }
