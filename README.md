@@ -34,10 +34,15 @@ To run this project, you will need to add the following environment variables to
 `PORT=3000`
 
 `MONGO_URL="mongodb+srv://nasa-api:kmd123@nasacluster.uvu3kll.mongodb.net/newsletter?retryWrites=true&w=majority"`
+
 `A_TOKEN = 'newsLetter'`
+
 `R_TOKEN = 'newsLetter_R'`
+
 `ADMIN = 521`
+
 `MEMBER = 632`
+
 Start the server
 
 ```bash
