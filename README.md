@@ -42,35 +42,77 @@ Start the server
 <h3>Front_End</h3>
 <pre>
   -client
-    |__adminPenel.html
-    |__error.html
+    |__admin_dashboard.html
+    |__admin_profile.html
+    |__admin_login.html
+    |__admin_signup.html
     |__index.html
-    |__login.html
-    |__profile.html
-    |__signup.html
+    |__error.html
     |__success.html
     |
     |__css
-    |   |__admin.css
-    |   |__error.css
-    |   |__login.css
-    |   |_profile.css
-    |   |__signup.css
+    |   |__admin_dashboard.css
+    |   |__admin_profadmin_profile.js
+    |   |__admin_login.js
+    |   |__admin_signup.js
+    |   |__scripts.js
+    |   |__error.js
+    |   |__success.jsile.css
+    |   |__admin_signup.css
+    |   |__admin_login.css
     |   |__styles.css
+    |   |__error.css
     |   |__success.css
     |
-    |__img
-    |   |__admin-background.jpg
-    |   |__icon.svg
-    |   |__login.background.png
-    |   |__signup.background.png
-    |   |__user-profile.svg
-    |
     |__js
-    |   |__admin-login.js
-
+    |   |__admin_dashborad.js
+    |   |__admin_profile.js
+    |   |__admin_login.js
+    |   |__admin_signup.js
+    |   |__scripts.js
+    |   |__error.js
+    |   |__success.js
+    |
+    |__img
+        |__admin-background.jpg
+        |__icon.svg
+        |__login.background.png
+        |__signup.background.png
+        |__user-profile.svg
 </pre>
 
+<h3>Back_End</h3>
+<pre>
+  -server
+    |__server.js
+    |__app.js
+    |__package.json
+    |__.env
+    |
+    |__services
+    |   |__mongodb.js
+    |
+    |__routes
+    |   |__action.router.js
+    |   |__admin.router.js
+    |   |__home.router.js
+    |   |__api.js
+    |
+    |__controllers
+    |   |__action.controller.js
+    |   |__admin.controller.js
+    |   |__home.controller.js
+    |   |__profile.controller.js
+    |
+    |__models
+    |   |__admin.model.js
+    |   |__admin.mongo.js
+    |   |__users.model.js
+    |   |__users.mongo.js
+    |
+    |__middlewares
+        |__verify.middleware.js
+<pre>
 ## Newsletter
 
 ![newsletter app](https://user-images.githubusercontent.com/56252622/209477223-7f7d5526-ec6d-4dcc-8b0f-7f8f5210bc3e.png)

@@ -29,7 +29,7 @@ async function findUser(email) {
 }
 
 const deleteUser = async (id) => {
-  return await Users.deleteOne({ id });
+  return await Users.findByIdAndDelete(id);
 };
 module.exports = {
   addUser,

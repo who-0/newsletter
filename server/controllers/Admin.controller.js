@@ -6,17 +6,21 @@ const { findUsers, deleteUser } = require("../models/users.model");
 const { A_TOKEN, R_TOKEN, ADMIN, MEMBER } = process.env;
 
 const httpGetAdmin = async (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "..", "client", "adminPenel.html"));
+  res.sendFile(
+    path.join(__dirname, "..", "..", "client", "admin_dashboard.html")
+  );
 };
 
 const httpGetAdminSignup = (req, res) => {
   return res.sendFile(
-    path.join(__dirname, "..", "..", "client", "signup.html")
+    path.join(__dirname, "..", "..", "client", "admin_signup.html")
   );
 };
 
 const httpGetAdminLogin = (req, res) => {
-  return res.sendFile(path.join(__dirname, "..", "..", "client", "login.html"));
+  return res.sendFile(
+    path.join(__dirname, "..", "..", "client", "admin_login.html")
+  );
 };
 
 const httpPostAdminSignup = async (req, res) => {

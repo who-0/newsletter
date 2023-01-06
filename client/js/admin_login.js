@@ -1,32 +1,25 @@
-// const URL = "https://newsletter-qsx1.onrender.com/admin/signup";
-const URL = "http://localhost:3000/admin/signup";
-async function postSignup() {
-  const username = document.getElementById("uname");
+const URL = "https://newsletter-qsx1.onrender.com/admin/login";
+// const URL = "http://localhost:3000/admin/login";
+async function postLogin() {
   const mail = document.getElementById("email");
   const password = document.getElementById("pwd");
-  const verifyCode = document.getElementById("code");
-  const roles = document.getElementById("role");
   const data = {
-    uname: username.value,
     email: mail.value,
     pwd: password.value,
-    code: verifyCode.value,
-    role: roles.value,
   };
-
-  const newMember = await fetch(URL, {
+  const success = await fetch(URL, {
     method: "post",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   }).then((res) => res.json());
-  console.log(newMember);
-  if (!newMember) {
-    location.replace("/error");
-  } else if (newMember.error) {
-    const encoded = encodeURIComponent(newMember.error);
-    location.replace(`/error?${encoded}`);
+  console.log(success);
+  if (!success) {
+    Location.replace("/error");
+  } else if (success.err) {
+    const encoded = encodeURIComponent(success.err);
+    Location.replace("/error" + `?${encoded}`);
   } else {
-    const newUrl = URL.split("signup")[0];
+    const newUrl = URL.split("login")[0];
     location.replace(newUrl);
   }
 }
