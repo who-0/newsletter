@@ -6,6 +6,7 @@
 
 **Server:** Node, Express, MongoDB
 
+<hr />
 ## Run Locally
 
 Clone the project
@@ -38,6 +39,7 @@ Start the server
   npm start
 ```
 
+<hr />
 <h2>File Structure</h2>
 <h3>Front_End</h3>
 <pre>
@@ -113,6 +115,7 @@ Start the server
     |__middlewares
         |__verify.middleware.js
 <pre>
+<hr />
 ## Newsletter
 
 ![newsletter app](https://user-images.githubusercontent.com/56252622/209477223-7f7d5526-ec6d-4dcc-8b0f-7f8f5210bc3e.png)
