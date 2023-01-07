@@ -30,16 +30,19 @@ const httpPostAdminSignup = async (req, res) => {
       error: "Missing some input. Please All Fill!",
     });
   } else if (role === "admin") {
+    console.log(ADMIN);
     if (+code !== ADMIN) {
       return res.status(400).json({
         error: "Your verfiy code is wrong.",
       });
     }
-  } else if (role !== "member") {
-    if (+code !== MEMBER)
+  } else if (role === "member") {
+    console.log(MEMBER);
+    if (+code !== MEMBER) {
       return res.status(400).json({
         error: "Your verfiy code is wrong.",
       });
+    }
   } else {
     try {
       const oldUser = await findMember(email);
@@ -50,7 +53,6 @@ const httpPostAdminSignup = async (req, res) => {
         const userToken = jwt.sign({ email, role }, A_TOKEN, {
           expiresIn: "1m",
         });
-
         const newToken = jwt.sign({ email, role }, R_TOKEN);
         const newUser = {
           uname,
