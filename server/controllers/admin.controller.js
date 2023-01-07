@@ -1,6 +1,6 @@
 const path = require("path");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const { addMember, findMember } = require("../models/admin.model");
 const { findUsers, deleteUser } = require("../models/users.model");
 const { A_TOKEN, R_TOKEN, ADMIN, MEMBER } = process.env;
@@ -50,6 +50,7 @@ const httpPostAdminSignup = async (req, res) => {
         const userToken = jwt.sign({ email, role }, A_TOKEN, {
           expiresIn: "1m",
         });
+
         const newToken = jwt.sign({ email, role }, R_TOKEN);
         const newUser = {
           uname,
