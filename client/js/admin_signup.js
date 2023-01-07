@@ -1,4 +1,4 @@
-const URL = "https://newsletter-qsx1.onrender.com/admin/signup";
+const URL = "https://newsletter-c3an.onrender.com/admin/signup";
 // const URL = "http://localhost:3000/admin/signup";
 async function postSignup() {
   const username = document.getElementById("uname");
