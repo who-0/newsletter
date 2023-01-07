@@ -1,5 +1,7 @@
 const URL = "https://newsletter-c3an.onrender.com/admin/signup";
 // const URL = "http://localhost:3000/admin/signup";
+const signup = document.getElementById("signup");
+signup.addEventListener("click", postSignup);
 async function postSignup() {
   const username = document.getElementById("uname");
   const mail = document.getElementById("email");
