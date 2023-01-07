@@ -25,29 +25,21 @@ const httpGetAdminLogin = (req, res) => {
 
 const httpPostAdminSignup = async (req, res) => {
   const { uname, pwd, email, code, role } = req.body;
+  console.log("testing");
+  console.log(req.body);
   if (!uname || !pwd || !email || !code || !role) {
+    console.log("check input");
     return res.status(400).json({
       error: "Missing some input. Please All Fill!",
     });
-  } else if (role === "admin") {
-    if (code !== ADMIN) {
-      return res.status(400).json({
-        error: "Your verfiy code is wrong.",
-      });
-    }
-  } else if (role === "member") {
-    console.log(MEMBER);
-    if (code !== MEMBER) {
-      return res.status(400).json({
-        error: "Your verfiy code is wrong.",
-      });
-    }
-  } else {
+  } else if (code === ADMIN || code === MEMBER) {
     try {
       const oldUser = await findMember(email);
+      console.log(oldUser);
       if (oldUser) {
         return res.status(406).json(oldUser);
       } else {
+        console.log("start signup");
         const hpwd = await bcrypt.hash(pwd, 8);
         const userToken = jwt.sign({ email, role }, A_TOKEN, {
           expiresIn: "1m",
@@ -72,6 +64,10 @@ const httpPostAdminSignup = async (req, res) => {
         error: err.message,
       });
     }
+  } else {
+    return res.status(400).json({
+      error: "Your verfiy code is wrong.",
+    });
   }
 };
 
