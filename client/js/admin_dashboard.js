@@ -1,5 +1,5 @@
-const URL = "https://newsletter-c3an.onrender.com/admin/allsignup";
-// const URL = "http://localhost:3000/admin/allsignup";
+// const URL = "https://newsletter-c3an.onrender.com/admin/allsignup";
+const URL = "http://localhost:3000/admin/allsignup";
 const tbody = document.getElementById("table-body");
 (async function () {
   let userData = "";

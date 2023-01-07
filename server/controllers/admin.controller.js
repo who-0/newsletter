@@ -30,15 +30,14 @@ const httpPostAdminSignup = async (req, res) => {
       error: "Missing some input. Please All Fill!",
     });
   } else if (role === "admin") {
-    console.log(ADMIN);
-    if (+code !== ADMIN) {
+    if (code !== ADMIN) {
       return res.status(400).json({
         error: "Your verfiy code is wrong.",
       });
     }
   } else if (role === "member") {
     console.log(MEMBER);
-    if (+code !== MEMBER) {
+    if (code !== MEMBER) {
       return res.status(400).json({
         error: "Your verfiy code is wrong.",
       });
