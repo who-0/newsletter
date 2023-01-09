@@ -3,7 +3,7 @@ const { A_TOKEN } = process.env;
 const userVerify = async (req, res, next) => {
   const { userToken } = req.cookies;
   if (!userToken) {
-    return res.redirect("/admin/signup");
+    return res.redirect("/admin/login");
   } else {
     await jwt.verify(userToken, A_TOKEN, (err, result) => {
       if (err) {
