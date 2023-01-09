@@ -1,5 +1,5 @@
-const URL = "https://newsletter-c3an.onrender.com/admin/allsignup";
-// const URL = "http://localhost:3000/admin/allsignup";
+// const URL = "https://newsletter-c3an.onrender.com/admin/allsignup";
+const URL = "http://localhost:3000/admin/allsignup";
 const tbody = document.getElementById("table-body");
 (async function () {
   let userData = "";
@@ -14,6 +14,7 @@ const tbody = document.getElementById("table-body");
     location.replace(`/error?${encoded}`);
   } else if (role.role === "member") {
     allSignup.pop();
+    console.log("member");
     allSignup.forEach((i, index) => {
       userData += `
     <tr>
@@ -25,6 +26,7 @@ const tbody = document.getElementById("table-body");
     `;
     });
   } else {
+    console.log("admin");
     allSignup.forEach((i, index) => {
       userData += `
       <tr>

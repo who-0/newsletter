@@ -27,9 +27,10 @@ body {
 }
 .admin-signup input,
 select,
-button {
+button,
+p {
   margin: 1% 0;
-  width: 50%;
+  width: 60%;
   height: 2rem;
   border: none;
   outline: none;
@@ -62,6 +63,24 @@ select {
 }
 .admin-signup button:hover {
   background-color: lightgreen;
+  color: black;
+}
+.ref-login {
+  color: rgb(0, 0, 0);
+  margin-top: 4% !important;
+  text-align: center;
+  line-height: 35px;
+  border-radius: 0.5vmax;
+}
+.ref-login a {
+  text-decoration: none;
+  color: white;
+}
+.ref-login:hover {
+  background-color: white;
+  color: white;
+}
+.ref-login:hover a {
   color: black;
 }
 .loading {

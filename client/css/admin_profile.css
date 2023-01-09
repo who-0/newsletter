@@ -21,15 +21,35 @@ body {
   border-radius: 2vmax;
   padding: auto;
   margin: auto 2%;
+  position: relative;
+}
+
+.profile-back {
+  position: absolute;
+  color: rgb(0, 0, 0);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5vmax;
+  top: 3%;
+  left: 2%;
+  text-decoration: none;
+  background-color: rgb(255, 255, 255);
+}
+.profile-back:hover {
+  background-color: gray;
+  color: white;
 }
 .profile-container .profile-body {
   height: 100%;
-
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
+
 .profile-container .user-img {
   width: 60%;
 }
@@ -156,6 +176,11 @@ body {
   display: flex;
 }
 @media (max-width: 450px) {
+  .profile-back {
+    width: 25px;
+    height: 25px;
+    font-size: 13px;
+  }
   .profile-container .user-img {
     width: 40%;
   }
