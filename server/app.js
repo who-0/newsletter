@@ -14,7 +14,7 @@ app.use(helmet());
 app.use(morgan("tiny"));
 app.use(
   cors({
-    origin: "https://newsletter-qsx1.onrender.com",
+    origin: "https://newsletter-c3an.onrender.com",
     methods: ["POST", "GET"],
   })
 );
