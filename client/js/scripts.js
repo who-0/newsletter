@@ -1,4 +1,4 @@
-const URL = "https://newsletter-qsx1.onrender.com/";
+const URL = "https://newsletter-c3an.onrender.com/";
 // const URL = "http://localhost:3000/";
 
 async function postNewsLetter() {
@@ -31,9 +31,17 @@ async function postNewsLetter() {
     .then((res) => res.json())
     .then((data) => data)
     .catch((err) => console.log(err));
+<<<<<<< HEAD
   if (NewUser.error) {
     const encodedata = encodeURIComponent(`${NewUser.error}`);
     return location.replace(URL + "error" + "?" + encodedata);
+=======
+  if (!NewUser) {
+    return location.replace("/error");
+  } else if (NewUser.error) {
+    const encoded = encodeURIComponent(NewUser.error);
+    return location.replace(`/error?${encoded}`);
+>>>>>>> 0303b1962476819d4151e2e8f7d2b0ecb4804612
   } else if (NewUser.newUser) {
     const encodedata = encodeURIComponent(
       `${NewUser.newUser.firstname},${NewUser.newUser.lastname},${NewUser.newUser.email}`

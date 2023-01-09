@@ -12,10 +12,10 @@ const addUser = async (user) => {
       returnDocument: true,
       new: true,
     });
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(err);
     return res.status(400).json({
-      err: error.message,
+      error: err.message,
     });
   }
 };
@@ -29,7 +29,7 @@ async function findUser(email) {
 }
 
 const deleteUser = async (id) => {
-  return await Users.deleteOne({ id });
+  return await Users.findByIdAndDelete(id);
 };
 module.exports = {
   addUser,

@@ -14,19 +14,22 @@ const refreshToken = async (req, res) => {
     const { newToken } = req.cookies;
     await jwt.verify(newToken, R_TOKEN, (err, result) => {
       if (err) {
-        return res.status(404).json({
+        return res.status(401).json({
           error: "Your account is some problem. Please contact administor!",
         });
+      } else {
+        const { email, role } = result;
+        const userToken = jwt.sign({ email, role }, A_TOKEN, {
+          expiresIn: "1d",
+        });
+        res.cookie("userToken", userToken, { httpOnly: true });
+        return res.redirect("/admin");
       }
-      const { email, role } = result;
-      const userToken = jwt.sign({ email, role }, A_TOKEN, { expiresIn: "1d" });
-      res.cookie("userToken", userToken, { httpOnly: true });
-      return res.redirect("/admin");
     });
-  } catch (error) {
-    console.log(error);
-    return res.status(400).json({
-      err: error.message,
+  } catch (err) {
+    console.log(err);
+    return res.status(503).json({
+      error: err.message,
     });
   }
 };

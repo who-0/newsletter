@@ -7,7 +7,7 @@ const {
   httpPostAdminLogin,
   httpAllSignup,
   httpDelete,
-} = require("../controllers/Admin.controller");
+} = require("../controllers/admin.controller");
 const {
   httpGetProfile,
   httpFindUserProfile,

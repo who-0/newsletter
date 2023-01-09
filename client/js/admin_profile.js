@@ -1,7 +1,8 @@
-const URL = "https://newsletter-qsx1.onrender.com/admin/profile/user";
+const URL = "https://newsletter-c3an.onrender.com/admin/profile/user";
 // const URL = "http://localhost:3000/admin/profile/user";
 const userName = document.getElementById("uname");
 const email = document.getElementById("email");
+const save = document.getElementById("save");
 const profileInput = document.getElementsByClassName("profile-input");
 (async function () {
   const user = await fetch(URL, {
@@ -22,7 +23,7 @@ userName.addEventListener("blur", function () {
   userName.blur();
   userName.disabled = true;
 });
-
+save.addEventListener("click", updateUser);
 async function updateUser() {
   //   console.log(userName.value);
   const data = {

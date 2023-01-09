@@ -8,9 +8,9 @@
     <title>Admin Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="dist/loading-bar.css" />
-    <script type="text/javascript" src="dist/loading-bar.js"></script>
-    <link rel="stylesheet" href="/css/login.css" type="text/css">
+    <!-- <link rel="stylesheet" type="text/css" href="dist/loading-bar.css" />
+    <script type="text/javascript" src="dist/loading-bar.js"></script> -->
+    <link rel="stylesheet" href="/css/admin_login.css" type="text/css">
 </head>
 
 <body class="login-body">
@@ -18,13 +18,13 @@
         <div class="admin-login w-50">
             <input type="email" name="email" id="email" placeholder="Email">
             <input type="password" name="pwd" id="pwd" placeholder="Password">
-            <button onclick="postLogin()">Login</button>
+            <button id="login">Login</button>
         </div>
     </div>
     <div class="loading show">
         <span class="loader"></span>
     </div>
-    <script src="/js/admin-login.js"></script>
+    <script src="/js/admin_login.js"></script>
 </body>
 
 </html>
