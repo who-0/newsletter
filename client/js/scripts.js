@@ -31,16 +31,19 @@ async function postNewsLetter() {
     .then((res) => res.json())
     .then((data) => data)
     .catch((err) => console.log(err));
-  if (NewUser.newUser) {
+  if (NewUser.error) {
+    const encodedata = encodeURIComponent(`${NewUser.error}`);
+    return location.replace(URL + "error" + "?" + encodedata);
+  } else if (NewUser.newUser) {
     const encodedata = encodeURIComponent(
       `${NewUser.newUser.firstname},${NewUser.newUser.lastname},${NewUser.newUser.email}`
     );
-    location.replace(URL + "success" + "?" + encodedata);
+    return location.replace(URL + "success" + "?" + encodedata);
   } else {
     const encodedata = encodeURIComponent(
       `${NewUser.firstname},${NewUser.lastname}`
     );
-    location.replace(URL + "error" + "?" + encodedata);
+    return location.replace(URL + "error" + "?" + encodedata);
   }
 }
 
