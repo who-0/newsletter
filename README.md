@@ -132,12 +132,16 @@ Start the server
 
 ## Newsletter Login Page
 
-![newsletter app login](https://user-images.githubusercontent.com/56252622/209477258-eb759025-a2b4-4da0-852d-5ee1bba9ef14.png)
+![newsletter app login](https://user-images.githubusercontent.com/56252622/211283677-c880df25-75fb-4ed9-a7a9-b5b856f4f599.png)
 
 ## Newsletter Signup Page
 
-![newsletter app signup](https://user-images.githubusercontent.com/56252622/209477273-de4decbd-553e-4586-9ec9-6a5646356172.png)
+![newsletter app signup](https://user-images.githubusercontent.com/56252622/211283784-c4bd7bf2-d930-4508-b246-53df71b1804d.png)
+
+## Newsletter Admin Page
+
+![newsletter app profile](https://user-images.githubusercontent.com/56252622/211284095-0f7172ef-a353-4664-a653-4176602e1780.png)
 
 ## Newsletter Profile Page
 
-![newsletter app profile](https://user-images.githubusercontent.com/56252622/210786331-78d93c87-7ab0-4eb9-86e6-f71c7fe01297.png)
+![newsletter app profile](https://user-images.githubusercontent.com/56252622/211283856-9c29fe51-9765-46d9-9b55-0e191a672806.png)
