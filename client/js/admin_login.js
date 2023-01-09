@@ -1,5 +1,5 @@
-// const URL = "https://newsletter-c3an.onrender.com/admin/login";
-const URL = "http://localhost:3000/admin/login";
+const URL = "https://newsletter-c3an.onrender.com/admin/login";
+// const URL = "http://localhost:3000/admin/login";
 const login = document.getElementById("login");
 login.addEventListener("click", postLogin);
 async function postLogin() {

@@ -12,12 +12,12 @@ app.use(express.json());
 app.use(cookie());
 app.use(helmet());
 app.use(morgan("tiny"));
-// app.use(
-//   cors({
-//     origin: "https://newsletter-qsx1.onrender.com",
-//     methods: ["POST", "GET"],
-//   })
-// );
+app.use(
+  cors({
+    origin: "https://newsletter-qsx1.onrender.com",
+    methods: ["POST", "GET"],
+  })
+);
 app.use(api);
 
 module.exports = app;
